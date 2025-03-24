@@ -50,6 +50,29 @@ public class DepenseServiceImpl implements DepenseService {
     public double getTotalDepenseByCustomerId(int customerId) {
         return depenseRepository.getTotalDepenseByCustomerId(customerId);
     }
+    @Override
+    public List<Depense> getDepensesWithTickets() {
+        return depenseRepository.findAllWithTickets();
+    }
+
+    @Override
+    public List<Object[]>  findTotalDepenseByCustomer(){
+        return depenseRepository.findTotalDepenseByCustomer();
+    }
+
+    @Override
+    public List<Object[]> findTotalDepenseLeadsByCustomer(){
+        return depenseRepository.findTotalDepenseLeadsByCustomer();
+    }
+    @Override
+    public void updateDepenseEtat(int depenseid, int newEtat) {
+        Optional<Depense> depense = depenseRepository.findById(depenseid);
+        Depense depense2=depense.get();
+        if (depense2 != null) {
+            depense2.setEtat(newEtat);;
+            depenseRepository.save(depense2);
+        }
+    }
     // public void createDepense(Lead lead, double newDepense){
     //     Depense depense = new Depense();
     //     depense.setLead(lead);
@@ -60,4 +83,9 @@ public class DepenseServiceImpl implements DepenseService {
     //     depenseRepository.save(depense);
         
     // }
+    @Override
+    public double getTotalDepenseLeads(int month, int year) {
+        return depenseRepository.getTotalDepenseLeads(month, year);
+    }
+    
 }

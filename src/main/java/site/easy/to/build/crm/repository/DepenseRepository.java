@@ -22,4 +22,30 @@ public interface DepenseRepository extends JpaRepository<Depense, Integer> {
        "WHERE (c.customerId = :customerId OR c2.customerId = :customerId)"+
        "AND d.etat = 1")    
     public double getTotalDepenseByCustomerId(@Param("customerId") int customerId);
+    
+    @Query("SELECT SUM(d.valeurDepense) FROM Depense d WHERE MONTH(d.dateDepense) = :month AND YEAR(d.dateDepense) = :year")
+    double getTotalDepenseLeads(int month, int year);
+
+    
+    @Query("SELECT d FROM Depense d JOIN FETCH d.ticket WHERE d.etat = 1")
+    List<Depense> findAllWithTickets();
+
+    @Query("SELECT d.ticket.customer.customerId,d.ticket.customer.name,SUM(d.valeurDepense) " +
+    "FROM Depense d " +
+    "WHERE d.ticket IS NOT NULL " +
+    "AND d.etat= 1"+
+    "GROUP BY d.ticket.customer.customerId")
+    List<Object[]> findTotalDepenseByCustomer();
+
+    
+    @Query("SELECT d.lead.customer.customerId,d.lead.customer.name,SUM(d.valeurDepense) " +
+    "FROM Depense d " +
+    "WHERE d.lead IS NOT NULL " +
+    "AND d.etat= 1"+
+    "GROUP BY d.lead.customer.customerId")
+    List<Object[]> findTotalDepenseLeadsByCustomer();
+
+    // @Query("SELECT * from Depense " +
+    // "WHERE ticket_id= :ticketId")
+    // List<Depense> findDepenseByTicketId(@Param("ticketId") int ticketId);
 }

@@ -94,4 +94,9 @@ public class LeadServiceImpl implements LeadService {
     public long countByCustomerId(int customerId) {
         return leadRepository.countByCustomerCustomerId(customerId);
     }
+    @Override
+    public List<Lead> findLeadsByMonth(int month, int year) {
+        return leadRepository.findLeadsByMonth(month, year);
+    }
+  
 }

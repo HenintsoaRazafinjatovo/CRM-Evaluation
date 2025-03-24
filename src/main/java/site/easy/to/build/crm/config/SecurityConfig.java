@@ -69,12 +69,20 @@ public class SecurityConfig {
                                 .requestMatchers("/api/login").permitAll()
                                 .requestMatchers("/api/budgets").permitAll()
                                 .requestMatchers("/api/budgets/**").permitAll()
+                                .requestMatchers("/api/leads/**").permitAll()
+                                .requestMatchers("/api/depenses/**").permitAll()
+                                .requestMatchers("/api/tickets/**").permitAll()
                                 .requestMatchers(AntPathRequestMatcher.antMatcher("/**/manager/**")).hasRole("MANAGER")
                                 .requestMatchers("/employee/**").hasAnyRole("MANAGER", "EMPLOYEE")
                                 .requestMatchers("/employee/ticket/**").hasAnyRole("MANAGER", "EMPLOYEE")
                                 .requestMatchers("/customer/**").hasRole("CUSTOMER")
                                 .anyRequest().authenticated())
                                 .csrf(csrf -> csrf.ignoringRequestMatchers("/api/login"))
+                                .csrf(csrf -> csrf.ignoringRequestMatchers("/api/leads/**"))
+                                .csrf(csrf -> csrf.ignoringRequestMatchers("/api/depenses/**"))
+                                .csrf(csrf -> csrf.ignoringRequestMatchers("/api/tickets/**"))
+
+
                                 .formLogin((form) -> form
                                                 .loginPage("/login")
                                                 .loginProcessingUrl("/login")
@@ -118,6 +126,10 @@ public class SecurityConfig {
                                 .requestMatchers("/css/**").permitAll()
                                 .requestMatchers("/api/login").permitAll()
                                 .requestMatchers("/api/budgets").permitAll()
+                                .requestMatchers("/api/leads/**").permitAll()
+                                .requestMatchers("/api/tickets/**").permitAll()
+
+                                
                                 .requestMatchers(AntPathRequestMatcher.antMatcher("/**/manager/**")).hasRole("MANAGER")
                                 .anyRequest().authenticated())
                                 .csrf(csrf -> csrf.ignoringRequestMatchers("/api/login"))

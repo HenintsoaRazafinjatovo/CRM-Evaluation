@@ -15,4 +15,7 @@ public interface BudgetTotalRepository extends JpaRepository<BudgetTotal, Intege
     Optional<BudgetTotal> findByCustomerId(int customerId);
 
     List<BudgetTotal> findAll();
+
+    @Query("SELECT COALESCE(SUM(valeur), 0) FROM Budget")
+    double getTotalBudget();
 }

@@ -12,5 +12,10 @@ public interface DepenseService {
     Depense saveDepense(Depense depense);
     void deleteDepense(Integer id);
     double getTotalDepenseByCustomerId(int customerId);
-  
+    double getTotalDepenseLeads(int month, int year);
+    public List<Depense> getDepensesWithTickets();
+    public List<Object[]> findTotalDepenseByCustomer();
+    public List<Object[]> findTotalDepenseLeadsByCustomer();
+    
+    void updateDepenseEtat(int depenseId, int newEtat);
 }

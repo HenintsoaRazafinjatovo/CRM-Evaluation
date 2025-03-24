@@ -22,8 +22,12 @@ public class BudgetTotalRestController {
         this.budgetService = budgetService;
     }
 
-    @GetMapping
+    @GetMapping("/all")
     public List<BudgetTotal> getAllBudgets() {
         return budgetService.findAll();
+    }
+    @GetMapping("/total")
+    public double getTotalBudget() {
+        return budgetService.getTotalBudget();
     }
 }

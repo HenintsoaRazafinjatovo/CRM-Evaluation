@@ -22,4 +22,7 @@ public class BudgetTotalService {
     public BudgetTotal getTotalBudgetByCustomerId(int customerId) {
         return budgetTotalRepository.findByCustomerId(customerId).orElse(null);
     }
+    public double getTotalBudget() {
+        return budgetTotalRepository.getTotalBudget();
+    }
 }
