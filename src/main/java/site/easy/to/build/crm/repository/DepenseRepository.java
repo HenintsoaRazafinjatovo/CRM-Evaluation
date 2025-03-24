@@ -47,6 +47,7 @@ public interface DepenseRepository extends JpaRepository<Depense, Integer> {
 
     @Query("SELECT d FROM Depense d WHERE d.ticket.id = :ticketId")
     List<Depense> findDepenseByTicketId(@Param("ticketId") int ticketId);
+    
     @Query("SELECT d FROM Depense d WHERE d.lead.id =leadId")
     List<Depense>findDepenseByLeadId(@Param("leadId") int leadId);
 
