@@ -36,6 +36,7 @@ public class BudgetController {
     @PostMapping("/save")
     public String saveBudget(@ModelAttribute Budget budget,Authentication authentication){
         int userId = authenticationUtils.getLoggedInUserId(authentication);
+        System.out.println("userId = " + userId);
         Customer customer = customerService.findByCustomerId(userId);
         budget.setCustomer(customer);
         budgetService.save(budget);
