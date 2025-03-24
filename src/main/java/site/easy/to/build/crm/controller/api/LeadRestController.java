@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import site.easy.to.build.crm.entity.Lead;
 import site.easy.to.build.crm.service.lead.LeadService;
 
-@Controller
+@RestController
 @RequestMapping("api/leads")
 public class LeadRestController {
     @Autowired
