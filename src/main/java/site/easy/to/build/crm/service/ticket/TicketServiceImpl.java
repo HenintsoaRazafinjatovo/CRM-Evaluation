@@ -94,9 +94,16 @@ public class TicketServiceImpl implements TicketService{
     public void deleteAllByCustomer(Customer customer) {
         ticketRepository.deleteAllByCustomer(customer);
     }
-    // @Override
-    // public void deleteTicketWithDepenses(int ticketId) {
-    //     List<Depense>depenses=depenseRepository.findByTicketId(ticketId);
-    //     ticketRepository.deleteById(ticketId);
-    // }
+    @Override
+    public void deleteTicketWithDepenses(int ticketId) {
+        List<Depense>depenses=depenseRepository.findDepenseByTicketId(ticketId);
+        for (Depense depense : depenses) {
+            depenseRepository.delete(depense);
+        }
+        ticketRepository.deleteById(ticketId);
+    }
+    @Override
+    public double getSum() {
+        return ticketRepository.getSum();
+    }
 }

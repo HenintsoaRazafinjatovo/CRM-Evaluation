@@ -33,5 +33,6 @@ public interface TicketService {
     long countByCustomerCustomerId(int customerId);
 
     void deleteAllByCustomer(Customer customer);
-    // void deleteTicketWithDepenses(int ticketId);
+    void deleteTicketWithDepenses(int ticketId);
+    double getSum();
 }

@@ -87,5 +87,13 @@ public class DepenseServiceImpl implements DepenseService {
     public double getTotalDepenseLeads(int month, int year) {
         return depenseRepository.getTotalDepenseLeads(month, year);
     }
+    @Override
+    public List<Depense> findDepenseByTicketId(int ticketId) {
+        return depenseRepository.findDepenseByTicketId(ticketId);
+    }
+    @Override
+    public List<Depense> findDepenseByLeadId(int leadId) {
+        return depenseRepository.findDepenseByLeadId(leadId);
+    }
     
 }

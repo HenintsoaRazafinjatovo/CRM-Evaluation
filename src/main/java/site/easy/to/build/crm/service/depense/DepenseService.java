@@ -16,6 +16,9 @@ public interface DepenseService {
     public List<Depense> getDepensesWithTickets();
     public List<Object[]> findTotalDepenseByCustomer();
     public List<Object[]> findTotalDepenseLeadsByCustomer();
-    
+    List<Depense> findDepenseByTicketId(int ticketId);
+    List<Depense> findDepenseByLeadId(int leadId);
+
     void updateDepenseEtat(int depenseId, int newEtat);
+    
 }

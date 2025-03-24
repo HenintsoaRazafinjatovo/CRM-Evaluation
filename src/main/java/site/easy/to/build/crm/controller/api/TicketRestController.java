@@ -23,6 +23,10 @@ public class TicketRestController {
     public List<Ticket> getAllTickets() {
         return ticketService.findAll();
     }
+    @GetMapping("/total")
+    public double getTotalTickets() {
+        return ticketService.getSum();
+    }
 
     @PutMapping("/update/{ticketId}")
     public ResponseEntity<Ticket> updateTicket(@PathVariable int ticketId, @RequestBody Ticket ticketDetails) {
@@ -34,7 +38,7 @@ public class TicketRestController {
         ticket.setDescription(ticketDetails.getDescription());
         ticket.setStatus(ticketDetails.getStatus());
         ticket.setPriority(ticketDetails.getPriority());
-        ticket.setCreatedAt(ticketDetails.getCreatedAt());
+      
        
 
         Ticket updatedTicket = ticketService.save(ticket);
@@ -47,7 +51,7 @@ public class TicketRestController {
         if (ticket == null) {
             return ResponseEntity.notFound().build();
         }
-        ticketService.delete(ticket);
+        ticketService.deleteTicketWithDepenses(ticketId);
         return ResponseEntity.noContent().build();
     }
 }

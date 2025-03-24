@@ -24,7 +24,11 @@ public class LeadRestController {
     public List<Lead> getAllLeads() {
         return leadService.findAll();
     }
-
+    @GetMapping("/total")
+    public double getTotal()
+    {
+        return leadService.getSum();
+    }
     @PutMapping("/update/{leadId}")
     public ResponseEntity<Lead> updateLead(@PathVariable int leadId, @RequestBody Lead leadDetails) {
         Lead lead = leadService.findByLeadId(leadId);
@@ -55,7 +59,7 @@ public class LeadRestController {
         if (lead == null) {
             return ResponseEntity.notFound().build();
         }
-        leadService.delete(lead);
+        leadService.deleteLeadtWithDepenses(leadId);
         return ResponseEntity.noContent().build();
     }
 }
