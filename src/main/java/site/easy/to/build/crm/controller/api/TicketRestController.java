@@ -45,7 +45,7 @@ public class TicketRestController {
         return ResponseEntity.ok(updatedTicket);
     }
 
-    @PostMapping("/delete/{ticketId}")
+    @DeleteMapping("/delete/{ticketId}")
     public ResponseEntity<Void> deleteTicket(@PathVariable int ticketId) {
         Ticket ticket = ticketService.findByTicketId(ticketId);
         if (ticket == null) {

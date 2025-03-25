@@ -32,7 +32,7 @@ public interface LeadRepository extends JpaRepository<Lead, Integer> {
     long countByCustomerCustomerId(int customerId);
 
     void deleteAllByCustomer(Customer customer);
-    @Query("SELECT SUM(d.valeurDepense) FROM Depense d WHERE d.lead IS NOT NULL")
+    @Query("SELECT COALESCE(SUM(d.valeurDepense),0) FROM Depense d WHERE d.lead IS NOT NULL")
     double getSum();
 
 }

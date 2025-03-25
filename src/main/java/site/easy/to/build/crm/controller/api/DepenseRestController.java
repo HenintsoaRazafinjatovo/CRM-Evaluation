@@ -30,5 +30,14 @@ public class DepenseRestController {
     public List<Object[]> findTotalDepenseLeadsByCustomer() {
         return depenseService.findTotalDepenseLeadsByCustomer();
     }
+    @GetMapping("/detailsLead")
+    public List<Object[]> getDetailsLeads() {
+        return depenseService.getDetailsLeads();
+    }
+
+    @GetMapping("/detailsTicket")
+    public List<Object[]> getDetailsTickets() {
+        return depenseService.getDetailsTickets();
+    }
 
 }

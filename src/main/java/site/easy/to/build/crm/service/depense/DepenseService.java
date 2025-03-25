@@ -21,4 +21,6 @@ public interface DepenseService {
 
     void updateDepenseEtat(int depenseId, int newEtat);
     
+    List<Object[]> getDetailsLeads();
+    List<Object[]>getDetailsTickets();
 }

@@ -95,5 +95,14 @@ public class DepenseServiceImpl implements DepenseService {
     public List<Depense> findDepenseByLeadId(int leadId) {
         return depenseRepository.findDepenseByLeadId(leadId);
     }
+    @Override
+    public List<Object[]> getDetailsLeads(){
+        return depenseRepository.findDetailsLeads();
+    }
+
+    @Override
+    public List<Object[]> getDetailsTickets(){
+        return depenseRepository.findDetailsTickets();
     
+    }
 }

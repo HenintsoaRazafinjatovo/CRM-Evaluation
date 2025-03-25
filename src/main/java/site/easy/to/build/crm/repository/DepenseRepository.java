@@ -48,7 +48,23 @@ public interface DepenseRepository extends JpaRepository<Depense, Integer> {
     @Query("SELECT d FROM Depense d WHERE d.ticket.id = :ticketId")
     List<Depense> findDepenseByTicketId(@Param("ticketId") int ticketId);
     
-    @Query("SELECT d FROM Depense d WHERE d.lead.id =leadId")
+    @Query("SELECT d FROM Depense d WHERE d.lead.id = :leadId")
     List<Depense>findDepenseByLeadId(@Param("leadId") int leadId);
+    
+    @Query("SELECT d.depenseId, d.valeurDepense, d.dateDepense, d.etat, d.lead.customer.customerId, d.lead.customer.name, d.lead.name " +
+            "FROM Depense d " +
+            "WHERE d.lead IS NOT NULL " +
+            "AND d.etat = 1 " +
+            "GROUP BY d.depenseId, d.dateDepense, d.lead.customer.customerId, d.lead.customer.name, d.lead.name")
+    List<Object[]> findDetailsLeads();
+
+
+
+    @Query("SELECT d.depenseId, d.valeurDepense, d.dateDepense, d.etat, d.ticket.customer.customerId, d.ticket.customer.name, d.ticket.subject " +
+            "FROM Depense d " +
+            "WHERE d.ticket IS NOT NULL " +
+            "AND d.etat = 1 " +
+            "GROUP BY d.depenseId, d.valeurDepense, d.dateDepense, d.etat, d.ticket.customer.customerId, d.ticket.customer.name, d.ticket.subject")
+    List<Object[]> findDetailsTickets();
 
 }
